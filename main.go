@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/neuralknight/neuralknight/models"
+	"github.com/neuralknight/backend-models"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
 )
