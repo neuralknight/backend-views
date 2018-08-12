@@ -11,8 +11,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"github.com/neuralknight/neuralknight/models"
-	"github.com/neuralknight/neuralknight/views"
+	"github.com/neuralknight/backend-models"
+	"github.com/neuralknight/backend-views"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
 	. "gopkg.in/check.v1"
