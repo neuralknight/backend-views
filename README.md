@@ -1,16 +1,14 @@
-# neuralknight
+# neuralknight backend views
 
-[![Build Status](https://travis-ci.org/neuralknight/neuralknight.svg?branch=master)](https://travis-ci.org/neuralknight/neuralknight)
-[![Coverage Status](https://coveralls.io/repos/github/neuralknight/neuralknight/badge.svg?branch=master)](https://coveralls.io/github/neuralknight/neuralknight?branch=master)
+[![Build Status](https://travis-ci.org/neuralknight/backend-views.svg?branch=master)](https://travis-ci.org/neuralknight/backend-views)
+[![Coverage Status](https://coveralls.io/repos/github/neuralknight/backend-views/badge.svg?branch=master)](https://coveralls.io/github/neuralknight/backend-views?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1cbd1cf78e214480b4236b1d53e142ed)](https://www.codacy.com/project/grandquista/backend-views/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=neuralknight/backend-views&amp;utm_campaign=Badge_Grade_Dashboard)
 
 Rebuild of https://github.com/dsnowb/neuralknight in go.
 
 **Authors**: David Snowberger, Shannon Tully, Adam Grandquist
 
-**Version**: 1.0.0
-
-## Overview
-An occasionally suicidal shell-based chess game.
+**Version**: 2.0.0
 
 ## Getting Started
 
