@@ -76,11 +76,22 @@ func (s *RoutesSuite) generateGame(c *C) uuid.UUID {
 }
 
 func (s *RoutesSuite) addAgent(c *C, gameID uuid.UUID) uuid.UUID {
-	res, err := s.client.Post(s.makeURLString("api/v1.0/agents"), "text/json; charset=utf-8", nil)
+	var message models.AgentCreateMessage
+	message.User = true
+	gameURL, err := url.Parse(s.makeURLString("api/v1.0/games/" + gameID.String()))
 	c.Assert(err, Not(NotNil))
-	c.Assert(res.StatusCode, Equals, 400)
-	var message models.AgentCreatedMessage
-	return message.ID
+	message.GameURL = *gameURL
+	buffer, err := json.Marshal(message)
+	c.Assert(err, Not(NotNil))
+	res, err := s.client.Post(s.makeURLString("api/v1.0/agents"), "text/json; charset=utf-8", bytes.NewReader(buffer))
+	c.Assert(err, Not(NotNil))
+	c.Assert(res.StatusCode, Equals, 201)
+	buffer, err = ioutil.ReadAll(res.Body)
+	c.Assert(err, Not(NotNil))
+	var messageCreated models.AgentCreatedMessage
+	err = json.Unmarshal(buffer, &messageCreated)
+	c.Assert(err, Not(NotNil))
+	return messageCreated.ID
 }
 
 func (s *RoutesSuite) TestServeHTTPBadURL(c *C) {
@@ -159,18 +170,11 @@ func (s *RoutesSuite) TestServeHTTPGetAgents(c *C) {
 }
 
 func (s *RoutesSuite) TestServeHTTPPostAgents(c *C) {
-	message := models.AgentCreateMessage{}
-	message.User = true
 	gameID := s.generateGame(c)
-	gameURL, err := url.Parse(s.makeURLString("api/v1.0/games/" + gameID.String()))
-	c.Assert(err, Not(NotNil))
-	message.GameURL = *gameURL
-	buffer, err := json.Marshal(message)
-	c.Assert(err, Not(NotNil))
-	res, err := s.client.Post(s.makeURLString("api/v1.0/agents"), "text/json; charset=utf-8", bytes.NewReader(buffer))
-	c.Assert(err, Not(NotNil))
-	s.logError(res)
-	c.Assert(res.StatusCode, Equals, 201)
+	agent1ID := s.addAgent(c, gameID)
+	c.Assert(agent1ID.Version(), Equals, uuid.V5)
+	agent2ID := s.addAgent(c, gameID)
+	c.Assert(agent2ID.Version(), Equals, uuid.V5)
 }
 
 func (s *RoutesSuite) TestServeHTTPPutAgents(c *C) {
