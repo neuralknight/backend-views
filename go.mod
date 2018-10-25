@@ -15,7 +15,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/neuralknight/backend-models v0.0.0-20180901191801-14d0efddf8ab
 	github.com/satori/go.uuid v1.2.0
-	github.com/sirupsen/logrus v1.1.0
+	github.com/sirupsen/logrus v1.1.1
 	google.golang.org/appengine v1.2.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127
 )
